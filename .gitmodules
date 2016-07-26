@@ -1,0 +1,3 @@
+[submodule "Suite2P"]
+	path = Suite2P
+	url = git@github.com:dilawar/Suite2P

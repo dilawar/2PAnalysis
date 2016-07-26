@@ -1,4 +1,4 @@
-MATLAB=matlab -nodesktop -nojvm -nosplash
+MATLAB=matlab -nodisplay -nodesktop -nojvm -nosplash
 
 all : run_code # compile_matlab
 	echo "Done everything"

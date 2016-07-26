@@ -8,7 +8,8 @@ if exist(toolbox_path, 'dir')
 else
 	error('toolbox_path does not exist, please change toolbox_path');
 end
-ops0.clustModel  = 'neuropil'; % standard or neuropil
+%ops0.clustModel  = 'neuropil'; % standard or neuropil
+ops0.clustModel  = 'standard'; % standard or neuropil
 %ops0.neuropilSub = 'surround'; % none, surround or model
 ops0.neuropilSub = 'none'; % none, surround or model
 
@@ -22,7 +23,7 @@ ops0.getROIs                = 1;
 ops0.getSVDcomps            = 0;
 ops0.nSVD                   = 1000; % how many SVD components to keep
 
-ops0.temp_tiff              = './_Data/20160614/day0_testRoi2.tif'; % copy data locally first
+ops0.temp_tiff              = './_Data/Mouse1/Session1/block/day0_ROIZ.tif'; % copy data locally first
 ops0.ResultsSavePath        = './_Data/_results';
 ops0.PhaseCorrelation       = 1; % set to 0 for non-whitened cross-correlation
 ops0.SubPixel               = Inf; % 2 is alignment by 0.5 pixel, Inf is the exact number from phase correlation

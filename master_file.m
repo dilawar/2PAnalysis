@@ -1,13 +1,16 @@
 %%
 %cd('D:\CODE\MariusBox\runSuite2P') % start this code in the directory with make_db
-%make_db_example;
+
+make_db
 
 toolbox_path = './Suite2P';
+
 if exist(toolbox_path, 'dir')
 	addpath(toolbox_path) % add local path to the toolbox
 else
 	error('toolbox_path does not exist, please change toolbox_path');
 end
+
 %ops0.clustModel  = 'neuropil'; % standard or neuropil
 ops0.clustModel  = 'standard'; % standard or neuropil
 %ops0.neuropilSub = 'surround'; % none, surround or model
@@ -23,8 +26,8 @@ ops0.getROIs                = 1;
 ops0.getSVDcomps            = 0;
 ops0.nSVD                   = 1000; % how many SVD components to keep
 
-ops0.temp_tiff              = './_Data/Mouse1/Session1/block/day0_ROIZ.tif'; % copy data locally first
-ops0.ResultsSavePath        = './_Data/_results';
+ops0.temp_tiff              = './_data/Mouse1/2016-07-27/day0_Z_imagrdROI.tif'; % copy data locally first
+ops0.ResultsSavePath        = './_data/_results';
 ops0.PhaseCorrelation       = 1; % set to 0 for non-whitened cross-correlation
 ops0.SubPixel               = Inf; % 2 is alignment by 0.5 pixel, Inf is the exact number from phase correlation
 
@@ -97,6 +100,8 @@ ops1.getNeuropil= 1; % to extract neuropil
 
 
 %%
+
+display( db )
 for iexp = 1:length(db)        %3:length(db)
     % copy files from zserver
     run_pipeline(db(iexp), ops0, clustrules);

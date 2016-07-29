@@ -1,12 +1,11 @@
 %%
-%cd('D:\CODE\MariusBox\runSuite2P') % start this code in the directory with make_db
-
-make_db
+make_db;
 
 toolbox_path = './Suite2P';
 
 if exist(toolbox_path, 'dir')
 	addpath(toolbox_path) % add local path to the toolbox
+    addpath( strcat(toolbox_path, '/Utilities') )
 else
 	error('toolbox_path does not exist, please change toolbox_path');
 end
@@ -16,7 +15,7 @@ ops0.clustModel  = 'standard'; % standard or neuropil
 %ops0.neuropilSub = 'surround'; % none, surround or model
 ops0.neuropilSub = 'none'; % none, surround or model
 
-ops0.useGPU                 = 1; % if you can use a GPU in matlab this accelerate registration approx 3 times
+ops0.useGPU                 = 0; % if you can use a GPU in matlab this accelerate registration approx 3 times
 ops0.doRegistration         = 1;
 % root paths for files and temporary storage (ideally an SSD drive. my SSD is C)
 ops0.RegFileTiffLocation    = []; %'D:/DATA/'; % leave empty to NOT save registered tiffs
@@ -26,15 +25,16 @@ ops0.getROIs                = 1;
 ops0.getSVDcomps            = 0;
 ops0.nSVD                   = 1000; % how many SVD components to keep
 
-ops0.temp_tiff              = './_data/Mouse1/2016-07-27/day0_Z_imagrdROI.tif'; % copy data locally first
-ops0.ResultsSavePath        = './_data/_results';
+ops0.temp_tiff              = './temp.tiff'; % copy data locally first
+ops0.ResultsSavePath        = './_results';
 ops0.PhaseCorrelation       = 1; % set to 0 for non-whitened cross-correlation
 ops0.SubPixel               = Inf; % 2 is alignment by 0.5 pixel, Inf is the exact number from phase correlation
 
 ops0.showTargetRegistration = 1;
-ops0.RootStorage            = '/tmp/suit2p'
+ops0.RootStorage            = '~/toBeAnalyzed';
 ops0.ShowCellMap            = 1;
 ops0.DeleteBin              = 1; % set to 1 to delete bin file after processing
+
 
 % these are modifiable settings for classifying ROIs post-clustering
 clustrules.MaxNpix                          = 500; % important
@@ -43,6 +43,7 @@ clustrules.Compact                          = 2; % important
 clustrules.parent.minPixRelVar              = 1/10;
 clustrules.parent.PixelFractionThreshold    = 0.5; % 1/20;
 clustrules.parent.MaxRegions                = 10;
+clustrules.diameter                         = 15;
 
 % the following settings shouldn't need to be adjusted
 ops0.NavgFramesSVD          = 5000; % how many (pooled) frames to do the SVD based on

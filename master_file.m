@@ -108,5 +108,5 @@ for iexp = 1:length(db)        %3:length(db)
     run_pipeline(db(iexp), ops0, clustrules);
 end
 
-quit
+exit
 %%
